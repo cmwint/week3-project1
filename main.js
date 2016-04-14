@@ -102,13 +102,13 @@ console.log("Question 8");
 //     HINT: Googling the toFixed method will help you with the format.
 console.log("Question 9");
 var piggyBank = function(quarters, dimes, nickels, pennies){
-	var quarter = quarters * 0.25;
-	var dime = dimes * 0.10;
-	var nickel = nickels * 0.05;
-	var penny = pennies * 0.01;
-	return quarter + dime + nickel + penny
+	var qTotal = quarters * 0.25;
+	var dTotal = dimes * 0.10;
+	var nTotal = nickels * 0.05;
+	var pTotal = pennies * 0.01;
+	return qTotal + dTotal + nTotal + pTotal
 };
-var amount = piggyBank(4, 5, 1, 1);
+var amount = piggyBank(8, 20, 40, 200);
 console.log("$" + amount.toFixed(2));
 
 // 10. Develop a function that determines a person's age by prompting them for their birth year.
@@ -132,7 +132,6 @@ console.log("Question 10");
 
 //        For example, 1997 is not a leap year, but 1996 is.  1900 is not a leapyear, but 2000 is.
 console.log("Question 11");
-var result;
 var leapYear = function(year){
 	if( (year % 4 === 0) && !( (year%100 === 0) && !(year%400 === 0) ) ){
 		result = "This is leap year";
@@ -142,6 +141,11 @@ var leapYear = function(year){
 	return result;
 };
 console.log(leapYear(1900));
+console.log(leapYear(1996));
+console.log(leapYear(1997));
+console.log(leapYear(2000));
+console.log(leapYear(2016));
+console.log(leapYear(2014));
 
 // 12. Develop a function that cleans up a phone number entered by a user.
 //     The rules are as follows:
@@ -151,24 +155,70 @@ console.log(leapYear(1900));
 //        If the phone number is 11 digits and the first number is not 1, then it is a bad number.
 //        HINT: You may need to use the charAt method.
 console.log("Question 12");
-// var phoneNumber = function(number){
-// 	if(){
-
-// 	}else{
-
-// 	}
-// };
-// var newReply = prompt("Can I has yo numba?");
-// console.log(phoneNumber(newReply));
+var cleanPhone = function(number){
+	var phone = number.toString();
+	if(phone.length > 11 || phone.length < 10){
+		return message = "Bad number";
+	}else if(phone.length === 11){
+		if(phone.charAt(0) == 1){
+			var clean = phone.substring(1);
+			return clean;
+		}else{
+			return message = "Bad number";
+		}
+	}else{
+		return number;
+	}
+};
+console.log(cleanPhone(13037817122));
+console.log(cleanPhone(137817122));
+console.log(cleanPhone(7202171838));
+console.log(cleanPhone(72021718382345));
 
 // 13. Create a function that determines whether a parameter is a number or not.
 //     Iterate over the elements in the following array to determine if each is a number.
 //     HINT: You may need to use the isNaN method.
+console.log("Question 13");
        arrayOfAllTheThings = ["one", 23, {thingsWhalesLove: "beaches"}, "six hundred", 33, 6834, "5,435"]
+var check = function(array){
+	for(i=0; i<array.length; i++){
+		if(isNaN(array[i])){
+			console.log(array[i] + " is not a number");
+		}else{
+			console.log(array[i] + " is a number");
+		}
+	}
+}
+check(arrayOfAllTheThings);
 
 // 14. Create a die rolling function that accepts no parameters.
 //     It rolls two six-sided-dice, adds the two numbers together, and returns a roll value.
 //     To get the random number rolled by each die, use Math.random and Math.floor.
+console.log("Question 14");
+var rollDice = function(){
+	var total = 0;
+	dieOne = Math.floor(Math.random() * 6) + 1;
+	dieTwo = Math.floor(Math.random() * 6) + 1;
+	console.log("Die One: " + dieOne);
+	console.log("Die Two: " + dieTwo);
+	var roll = dieOne + dieTwo
+	console.log("Your roll: " + roll);
+	total += roll;
+	count = 1;
+	while( total < 41 ){
+		dieOne = Math.floor(Math.random() * 6) + 1;
+		dieTwo = Math.floor(Math.random() * 6) + 1;
+		console.log("Die One: " + dieOne);
+		console.log("Die Two: " + dieTwo);
+		var roll = dieOne + dieTwo
+		console.log("Your roll: " + roll);
+		total += roll;
+		console.log(total);
+		count ++;
+	}
+	console.log("It took me " + count + " to buy a property!");
+}
+rollDice();
 
 // 15. Using your die roll function above, figure out how many times it would take a user
 //     to get around a Monopoly board once. A monopoly board has 40 spaces total.
